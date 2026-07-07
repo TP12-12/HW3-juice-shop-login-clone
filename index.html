@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juice Shop - Login Clone</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .login-container { background: white; padding: 20px 40px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; }
+        button { width: 100%; padding: 10px; background-color: #ff9900; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        #error-msg { color: red; font-size: 0.9em; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="email">Email</label>
+        <input type="text" id="email" required>
+        
+        <label for="password">Password</label>
+        <input type="password" id="password" required>
+        
+        <p id="error-msg"></p>
+        <button type="submit">Log In</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent actual form submission
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const errorMsg = document.getElementById('error-msg');
+        
+        // Client-side validation
+        if (!email.includes('@')) {
+            errorMsg.textContent = "Please enter a valid email containing '@'.";
+            errorMsg.style.display = "block";
+            return;
+        }
+        
+        if (password.length < 8) {
+            errorMsg.textContent = "Password must be at least 8 characters long.";
+            errorMsg.style.display = "block";
+            return;
+        }
+
+        // If validation passes
+        errorMsg.style.color = "green";
+        errorMsg.textContent = "Validation passed! Attempting login...";
+        errorMsg.style.display = "block";
+        
+        // Here, the data would be sent to the server for Server-Side Validation
+    });
+</script>
+
+</body>
+</html>
